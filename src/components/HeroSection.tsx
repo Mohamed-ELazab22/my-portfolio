@@ -26,14 +26,14 @@ const HeroSection = () => {
         </h1>
 
         <p className="animate-fade-up animate-fade-up-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          Turning Data into Insights and Business Decisions.
+          Transforming complex data into actionable business insights through exploratory analysis, predictive modeling, and interactive dashboards.
         </p>
 
         <div className="animate-fade-up animate-fade-up-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="#projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity">
             View My Projects <ArrowDown size={18} />
           </a>
-          <a href="/resume_mohamed_elazab.pdf" download className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary hover:text-primary-foreground font-semibold transition-colors">
+          <a href="/resume_mohamed_elazab.pdf" download="Mohamed_Elazab_CV.pdf" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/20 border border-primary/50 text-foreground hover:bg-primary hover:text-primary-foreground font-semibold transition-colors">
             Download CV <Download size={18} />
           </a>
           <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/40 text-primary hover:bg-primary/10 font-semibold transition-colors">

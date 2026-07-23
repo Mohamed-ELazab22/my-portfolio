@@ -18,10 +18,9 @@ const AboutSection = () => {
 
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-muted-foreground leading-relaxed text-lg text-center md:text-left">
-            I'm a Data Analyst with a passion for transforming raw data into meaningful insights that drive strategic business decisions. 
-            I specialize in data cleaning, exploratory analysis, and building compelling visualizations. With expertise across Python, SQL, 
-            and Power BI, I help organizations uncover hidden patterns in their data and present findings in clear, actionable formats. 
-            My goal is to bridge the gap between complex datasets and informed decision-making.
+            I am a Data Analyst skilled in Python, SQL, Excel, and Power BI, specializing in data cleaning, exploratory data analysis (EDA), and interactive dashboard development. 
+            With experience in building data models, visual reports, and applying machine learning workflows (scikit-learn, feature engineering, classification, and regression), 
+            I bridge the gap between complex datasets and informed, data-driven decision-making. Passionate about leveraging AI and analytics to optimize business outcomes.
           </p>
         </div>
 

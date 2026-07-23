@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Eye, Github } from "lucide-react";
+import { ExternalLink, Eye, Github, FileText, Database, Target, Lightbulb } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,9 @@ type Project = {
   title: string;
   description: string;
   fullDescription: string;
+  problemStatement?: string;
+  dataset?: string;
+  keyInsights?: string[];
   tools: string[];
   thumbnail: string;
   images: string[];
@@ -46,15 +49,27 @@ const projects: Project[] = [
     presentation: "/Automotive_Market_Analysis.pptx"
   },
   {
-    title: "Power BI Sales Dashboard",
+    title: "MTA Daily Ridership Analytics",
     description:
-      "An interactive dashboard showing key business metrics, sales performance, and trends.",
+      "A multi-modal public transit analytics dashboard examining NYC MTA ridership recovery, weekday vs. weekend patterns, and mode dynamics (2019-2024).",
+    problemStatement:
+      "Assessing post-pandemic transit recovery trends and mode-specific demand across New York City's complex transit network (Subways, Buses, Commuter Rail, Bridges & Tunnels, Access-A-Ride).",
+    dataset:
+      "NYC Metropolitan Transportation Authority (MTA) Daily Ridership dataset (2019–2024), tracking multi-year volume across 7 transportation modes.",
     fullDescription:
-      "An interactive Power BI dashboard designed to present key business metrics at a glance. The dashboard includes visualizations for sales performance over time, regional breakdowns, product category analysis, and KPI tracking. It was built with a focus on clean design and user-friendly interactivity, allowing stakeholders to filter and drill down into the data effortlessly.",
-    tools: ["Power BI", "Excel"],
-    thumbnail: "/project-3.jpg",
-    images: ["/project-3.jpg"],
-    github: "#"
+      "This project cleans, models, and visualizes multi-year public transportation ridership data for New York City's MTA system using Power BI, Power Query, and Excel. It evaluates post-pandemic recovery metrics against target baselines, analyzes mode share distributions, compares weekday versus weekend commuting dynamics, and identifies high-resilience transit sectors.",
+    keyInsights: [
+      "Achieved 10.79 Billion total transit ridership with an overall mobility recovery rate of 72.8% and +1.8% YoY growth.",
+      "Subways lead NYC transit with 5.955 Billion riders (55.19% share), followed by Buses with 2.382 Billion (22.08% share).",
+      "Bridges & Tunnels outperformed pre-pandemic goals with 1.79 Billion riders (+1.66% above recovery target).",
+      "Access-A-Ride paratransit mobility experienced strong growth, reaching 46.65 Million riders (+20.74% recovery rate).",
+      "Commuter Rail (LIRR & Metro-North) demonstrates strong weekday commuter reliance compared to weekend travel."
+    ],
+    tools: ["Power BI", "Power Query", "DAX", "Excel", "Data Modeling", "Time Series Analysis"],
+    thumbnail: "/mta-1.png",
+    images: ["/mta-1.png", "/mta-2.png", "/mta-3.png", "/mta-4.png", "/mta-5.png"],
+    github: "https://github.com/amr-elgharip2006/Group1_DEPI",
+    presentation: "/MTA_Daily_Ridership_Analytics_Dashboard.pptx"
   },
 ];
 
@@ -101,7 +116,7 @@ const ProjectsSection = () => {
               }`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
-              {/* Project image placeholder */}
+              {/* Project thumbnail */}
               <div className="aspect-video bg-muted/30 flex items-center justify-center border-b border-border/30 overflow-hidden relative group-hover:opacity-90 transition-opacity">
                 <img
                   src={project.thumbnail}
@@ -151,10 +166,10 @@ const ProjectsSection = () => {
 
       {/* Project details modal */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className={`glass border-border/50 w-[95vw] ${selectedProject?.demo ? 'max-w-5xl' : 'max-w-3xl'} flex flex-col max-h-[90vh]`}>
+        <DialogContent className={`glass border-border/50 w-[95vw] ${selectedProject?.demo ? 'max-w-5xl' : 'max-w-4xl'} flex flex-col max-h-[90vh]`}>
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-foreground">
-              {selectedProject?.title}
+            <DialogTitle className="text-2xl font-bold text-foreground flex items-center justify-between gap-4">
+              <span>{selectedProject?.title}</span>
             </DialogTitle>
             <DialogDescription className="sr-only">Project details</DialogDescription>
           </DialogHeader>
@@ -173,53 +188,108 @@ const ProjectsSection = () => {
               </div>
             )}
 
-            {/* Modal images - Only large if no demo */}
+            {/* Modal images gallery */}
             {selectedProject?.images && selectedProject.images.length > 0 && !selectedProject?.demo && (
-              <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-                {selectedProject.images.map((img, idx) => (
-                  <div key={idx} className="shrink-0 w-full aspect-video rounded-lg flex items-center justify-center border border-border/30 bg-muted/30 overflow-hidden snap-center">
-                    <img src={img} alt={`${selectedProject.title} screenshot ${idx + 1}`} className="w-full h-full object-contain" />
-                  </div>
-                ))}
+              <div>
+                <h4 className="text-sm font-mono text-primary mb-3">Dashboard Gallery ({selectedProject.images.length} views)</h4>
+                <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
+                  {selectedProject.images.map((img, idx) => (
+                    <div key={idx} className="shrink-0 w-full md:w-[85%] aspect-video rounded-lg flex items-center justify-center border border-border/40 bg-black/40 overflow-hidden snap-center group relative">
+                      <img src={img} alt={`${selectedProject.title} view ${idx + 1}`} className="w-full h-full object-contain" />
+                      <span className="absolute bottom-2 right-2 bg-background/80 text-foreground font-mono text-xs px-2 py-1 rounded border border-border/40">
+                        View {idx + 1} of {selectedProject.images.length}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
-            {/* If there's a demo, show images smaller as thumbnails */}
-            {selectedProject?.demo && selectedProject?.images && selectedProject.images.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {selectedProject.images.map((img, idx) => (
-                  <div key={idx} className="aspect-video rounded-lg flex items-center justify-center border border-border/30 bg-muted/30 overflow-hidden">
-                    <img src={img} alt={`${selectedProject.title} screenshot ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  </div>
-                ))}
+            {/* Structured Details: Problem Statement & Dataset */}
+            {selectedProject?.problemStatement && (
+              <div className="glass rounded-lg p-4 border border-border/30">
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2">
+                  <Target size={16} className="text-primary" /> Problem Statement
+                </h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {selectedProject.problemStatement}
+                </p>
               </div>
             )}
 
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              {selectedProject?.fullDescription}
-            </p>
+            {selectedProject?.dataset && (
+              <div className="glass rounded-lg p-4 border border-border/30">
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2">
+                  <Database size={16} className="text-primary" /> Dataset & Scope
+                </h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {selectedProject.dataset}
+                </p>
+              </div>
+            )}
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+            {/* Description */}
+            <div>
+              <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-2">
+                <FileText size={16} className="text-primary" /> Overview & Approach
+              </h4>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                {selectedProject?.fullDescription}
+              </p>
+            </div>
+
+            {/* Key Insights */}
+            {selectedProject?.keyInsights && selectedProject.keyInsights.length > 0 && (
+              <div className="glass rounded-lg p-5 border border-border/30">
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-3">
+                  <Lightbulb size={16} className="text-primary" /> Key Findings & Business Insights
+                </h4>
+                <ul className="space-y-2.5">
+                  {selectedProject.keyInsights.map((insight, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-muted-foreground leading-relaxed">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                      <span>{insight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Bottom Actions & Tools */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-border/40">
               <div className="flex flex-wrap gap-2">
                 {selectedProject?.tools.map((tool) => (
                   <span
                     key={tool}
-                    className="px-3 py-1 text-xs rounded-md bg-primary/10 text-primary font-mono"
+                    className="px-3 py-1 text-xs rounded-md bg-primary/10 text-primary font-mono border border-primary/20"
                   >
                     {tool}
                   </span>
                 ))}
               </div>
 
-              {selectedProject?.presentation && (
-                <a 
-                  href={selectedProject.presentation} 
-                  download 
-                  className="inline-flex shrink-0 items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  Download Presentation
-                </a>
-              )}
+              <div className="flex items-center gap-3">
+                {selectedProject?.github && selectedProject.github !== "#" && (
+                  <a 
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary hover:bg-secondary/80 text-secondary-foreground text-sm font-medium border border-border/50 transition-colors"
+                  >
+                    <Github size={16} /> Repository <ExternalLink size={14} />
+                  </a>
+                )}
+
+                {selectedProject?.presentation && (
+                  <a 
+                    href={selectedProject.presentation} 
+                    download="MTA_Daily_Ridership_Analytics_Dashboard.pptx" 
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    Download Presentation
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </DialogContent>
