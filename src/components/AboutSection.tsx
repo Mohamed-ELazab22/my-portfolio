@@ -17,8 +17,8 @@ const AboutSection = () => {
         <div className="w-16 h-1 bg-[#3A9B78] mx-auto rounded-full mb-12" />
 
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-[#A4AEA8] leading-relaxed text-lg text-center md:text-left">
-            I am a <strong className="text-[#F1F3EF] font-semibold">Data Analyst & Machine Learning Engineer</strong> proficient in Python, SQL, Power BI, and Scikit-learn. I specialize in transforming raw datasets into actionable business intelligence through exploratory data analysis, interactive dashboard engineering, and predictive machine learning models (classification, regression, and clustering). With expertise spanning data preprocessing, feature engineering, and model deployment, I bridge the gap between complex data systems and strategic decision-making.
+          <p className="text-[#A4AEA8] leading-relaxed text-base md:text-lg text-center md:text-left">
+            With a background in <strong className="text-[#F1F3EF] font-semibold">Computer Science & Artificial Intelligence</strong> at Beni-Suef National University, I specialize in combining data analytics with practical machine learning. My focus is on turning raw data into structured insights—applying exploratory analysis, data preparation, supervised classification, and unsupervised clustering. Through continuous learning and hands-on implementation, I build and deploy practical interactive web applications that deliver measurable value.
           </p>
         </div>
 

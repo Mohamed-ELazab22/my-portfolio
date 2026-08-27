@@ -2,27 +2,27 @@ import { Code2, BarChart2, Cpu, Wrench, Languages } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Programming Languages",
+    title: "Programming",
     icon: Code2,
-    skills: ["C++", "Python", "SQL"],
+    skills: ["Python", "C++", "SQL"],
   },
   {
-    title: "Data Analysis & Visualization",
+    title: "Data Analytics",
     icon: BarChart2,
-    skills: ["Excel", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Pandas"],
+    skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Excel", "DAX"],
   },
   {
-    title: "Machine Learning & Modeling",
+    title: "Machine Learning",
     icon: Cpu,
-    skills: ["Scikit-Learn", "Data Preprocessing", "Feature Engineering", "Model Evaluation", "EDA"],
+    skills: ["Scikit-learn", "Classification", "Regression", "Clustering", "Feature Engineering", "Model Evaluation"],
   },
   {
-    title: "Tools & Technologies",
+    title: "Tools & Deployment",
     icon: Wrench,
-    skills: ["Git", "GitHub", "Jupyter Notebook", "VS Code"],
+    skills: ["Git", "GitHub", "Streamlit", "Jupyter Notebook", "VS Code"],
   },
   {
-    title: "Spoken Languages",
+    title: "Languages",
     icon: Languages,
     skills: ["Arabic (Native)", "English (Good)"],
   },
