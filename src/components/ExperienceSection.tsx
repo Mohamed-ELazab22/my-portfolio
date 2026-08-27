@@ -32,41 +32,41 @@ const experiences: ExperienceItem[] = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="py-24 bg-[#0B1110]">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#F1F3EF]">
           Professional <span className="text-gradient">Experience</span>
         </h2>
-        <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-12" />
+        <div className="w-16 h-1 bg-[#3A9B78] mx-auto rounded-full mb-12" />
 
         <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp, idx) => (
             <div
               key={idx}
-              className="glass rounded-2xl p-8 border border-border/30 hover:border-primary/30 transition-all card-hover relative overflow-hidden"
+              className="glass rounded-2xl p-8 border border-[#24332D] hover:border-[#315343] transition-all card-hover relative overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2 border-b border-border/50 pb-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2 border-b border-[#24332D] pb-4">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <h3 className="text-xl md:text-2xl font-bold text-[#F1F3EF] flex items-center gap-3">
+                    <div className="p-2.5 rounded-lg bg-[#16211D] text-[#78C6A3] border border-[#315343]">
                       <Briefcase size={22} />
                     </div>
                     {exp.title}
                   </h3>
-                  <h4 className="text-base md:text-lg text-primary font-medium mt-1">
+                  <h4 className="text-base md:text-lg text-[#78C6A3] font-medium mt-1">
                     {exp.organization}
                   </h4>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground font-mono text-sm shrink-0">
-                  <Calendar size={16} className="text-primary" />
+                <div className="flex items-center gap-2 text-[#A4AEA8] font-mono text-sm shrink-0">
+                  <Calendar size={16} className="text-[#78C6A3]" />
                   <span>{exp.period}</span>
                 </div>
               </div>
 
               <ul className="space-y-3">
                 {exp.highlights.map((highlight, hIdx) => (
-                  <li key={hIdx} className="flex items-start gap-3 text-muted-foreground text-sm leading-relaxed">
-                    <CheckCircle2 size={18} className="text-primary mt-0.5 shrink-0" />
+                  <li key={hIdx} className="flex items-start gap-3 text-[#A4AEA8] text-sm leading-relaxed">
+                    <CheckCircle2 size={18} className="text-[#3A9B78] mt-0.5 shrink-0" />
                     <span>{highlight}</span>
                   </li>
                 ))}

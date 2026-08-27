@@ -1,36 +1,37 @@
-import { BarChart3, Database, LineChart, Target } from "lucide-react";
+import { BarChart3, Cpu, LineChart, Target } from "lucide-react";
 
 const highlights = [
-  { icon: Database, label: "Data Cleaning" },
-  { icon: BarChart3, label: "Data Analysis" },
-  { icon: LineChart, label: "Visualization" },
-  { icon: Target, label: "Decision Support" },
+  { icon: BarChart3, label: "Data Analytics & EDA" },
+  { icon: Cpu, label: "Machine Learning & Modeling" },
+  { icon: LineChart, label: "Power BI & Visualization" },
+  { icon: Target, label: "Predictive Decision Support" },
 ];
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-24 bg-[#0E1513]">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#F1F3EF]">
           About <span className="text-gradient">Me</span>
         </h2>
-        <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-12" />
+        <div className="w-16 h-1 bg-[#3A9B78] mx-auto rounded-full mb-12" />
 
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-muted-foreground leading-relaxed text-lg text-center md:text-left">
-            I am a Data Analyst skilled in Python, SQL, Excel, and Power BI, specializing in data cleaning, exploratory data analysis (EDA), and interactive dashboard development. 
-            With experience in building data models, visual reports, and applying machine learning workflows (scikit-learn, feature engineering, classification, and regression), 
-            I bridge the gap between complex datasets and informed, data-driven decision-making. Passionate about leveraging AI and analytics to optimize business outcomes.
+          <p className="text-[#A4AEA8] leading-relaxed text-lg text-center md:text-left">
+            I am a <strong className="text-[#F1F3EF] font-semibold">Data Analyst & Machine Learning Engineer</strong> proficient in Python, SQL, Power BI, and Scikit-learn. I specialize in transforming raw datasets into actionable business intelligence through exploratory data analysis, interactive dashboard engineering, and predictive machine learning models (classification, regression, and clustering). With expertise spanning data preprocessing, feature engineering, and model deployment, I bridge the gap between complex data systems and strategic decision-making.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {highlights.map(({ icon: Icon, label }) => (
-            <div key={label} className="glass rounded-xl p-6 text-center card-hover group">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                <Icon size={24} className="text-primary" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {highlights.map(({ icon: Icon, label }, idx) => (
+            <div key={label} className="glass rounded-xl p-6 text-center card-hover group border border-[#24332D]">
+              <div className="w-12 h-12 rounded-lg bg-[#16211D] border border-[#315343] flex items-center justify-center mx-auto mb-4 group-hover:bg-[#3A9B78]/20 transition-colors relative">
+                <Icon size={24} className="text-[#78C6A3]" />
+                {idx === 1 && (
+                  <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-[#D6A85F]" />
+                )}
               </div>
-              <span className="text-sm font-medium text-foreground">{label}</span>
+              <span className="text-sm font-medium text-[#F1F3EF]">{label}</span>
             </div>
           ))}
         </div>

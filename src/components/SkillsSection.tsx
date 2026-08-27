@@ -30,28 +30,28 @@ const skillCategories = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-24">
+    <section id="skills" className="py-24 bg-[#0B1110]">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#F1F3EF]">
           Technical <span className="text-gradient">Skills</span>
         </h2>
-        <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-12" />
+        <div className="w-16 h-1 bg-[#3A9B78] mx-auto rounded-full mb-12" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {skillCategories.map((cat) => {
             const Icon = cat.icon;
             return (
-              <div key={cat.title} className="glass rounded-xl p-6 border border-border/30 hover:border-primary/40 transition-all card-hover flex flex-col justify-between">
+              <div key={cat.title} className="glass rounded-xl p-6 border border-[#24332D] hover:border-[#315343] transition-all card-hover flex flex-col justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-5 flex items-center gap-3 font-mono">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <h3 className="text-lg font-semibold text-[#F1F3EF] mb-5 flex items-center gap-3 font-mono">
+                    <div className="p-2.5 rounded-lg bg-[#16211D] text-[#78C6A3] border border-[#315343]">
                       <Icon size={20} />
                     </div>
                     {cat.title}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {cat.skills.map((skill) => (
-                      <span key={skill} className="px-3.5 py-1.5 rounded-lg bg-secondary/80 text-secondary-foreground text-xs font-medium border border-border/50 hover:border-primary/40 transition-colors">
+                      <span key={skill} className="px-3.5 py-1.5 rounded-lg bg-[#16211D] text-[#B9DCCB] text-xs font-mono font-medium border border-[#315343] hover:border-[#3A9B78] transition-colors">
                         {skill}
                       </span>
                     ))}

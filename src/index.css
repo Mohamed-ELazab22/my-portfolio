@@ -6,48 +6,51 @@
 
 @layer base {
   :root {
-    --background: 220 25% 6%;
-    --foreground: 210 20% 92%;
+    /* Deep Forest + Muted Emerald + Warm Sand Color System */
+    --background: 168 21% 5.5%;       /* #0B1110 - Main Background */
+    --foreground: 90 12% 94.5%;        /* #F1F3EF - Primary Text */
 
-    --card: 220 20% 10%;
-    --card-foreground: 210 20% 92%;
+    --card: 160 21% 8.4%;             /* #111A17 - Card Background */
+    --card-foreground: 90 12% 94.5%;   /* #F1F3EF */
 
-    --popover: 220 20% 10%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 160 21% 8.4%;          /* #111A17 */
+    --popover-foreground: 90 12% 94.5%;
 
-    --primary: 166 100% 70%;
-    --primary-foreground: 220 25% 6%;
+    --primary: 158 46% 42%;           /* #3A9B78 - Primary Accent (Muted Emerald) */
+    --primary-foreground: 90 12% 94.5%; /* #F1F3EF */
 
-    --secondary: 220 18% 16%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 158 20% 10.8%;       /* #16211D - Elevated Surface */
+    --secondary-foreground: 140 7% 66%; /* #A4AEA8 - Secondary Text */
 
-    --muted: 220 15% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 163 20% 6.9%;            /* #0E1513 - Secondary Background */
+    --muted-foreground: 142 5% 47.5%;  /* #737F78 - Muted Text */
 
-    --accent: 166 100% 70%;
-    --accent-foreground: 220 25% 6%;
+    --accent: 155 42% 62%;            /* #78C6A3 - Soft Emerald */
+    --accent-foreground: 168 21% 5.5%;
+
+    --accent-sand: 38 60% 60%;        /* #D6A85F - Signature Warm Sand */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 166 100% 70%;
+    --border: 156 17% 17%;            /* #24332D - Default Border */
+    --input: 156 17% 17%;
+    --ring: 158 46% 42%;            /* #3A9B78 */
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(220 25% 6%) 0%, hsl(220 30% 12%) 50%, hsl(220 25% 8%) 100%);
-    --glow: 0 0 20px hsl(166 100% 70% / 0.15);
-    --card-glow: 0 0 30px hsl(166 100% 70% / 0.08);
+    --hero-gradient: linear-gradient(180deg, #0B1110 0%, #0E1513 100%);
+    --glow: 0 0 12px rgba(58, 155, 120, 0.12);
+    --card-glow: 0 8px 24px rgba(0, 0, 0, 0.35);
 
-    --sidebar-background: 220 20% 10%;
-    --sidebar-foreground: 210 20% 92%;
-    --sidebar-primary: 166 100% 70%;
-    --sidebar-primary-foreground: 220 25% 6%;
-    --sidebar-accent: 220 18% 16%;
-    --sidebar-accent-foreground: 210 20% 85%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 166 100% 70%;
+    --sidebar-background: 160 21% 8.4%;
+    --sidebar-foreground: 90 12% 94.5%;
+    --sidebar-primary: 158 46% 42%;
+    --sidebar-primary-foreground: 90 12% 94.5%;
+    --sidebar-accent: 158 20% 10.8%;
+    --sidebar-accent-foreground: 140 7% 66%;
+    --sidebar-border: 156 17% 17%;
+    --sidebar-ring: 158 46% 42%;
   }
 }
 
@@ -57,7 +60,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background-color: #0B1110;
+    color: #F1F3EF;
+    @apply font-sans antialiased;
   }
 
   html {
@@ -68,23 +73,34 @@
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(166 100% 70%), hsl(190 100% 70%));
+    background-image: linear-gradient(135deg, #F1F3EF 0%, #78C6A3 100%);
+  }
+
+  .text-sand {
+    color: #D6A85F;
   }
 
   .glass {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50;
+    background-color: rgba(17, 26, 23, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid #24332D;
   }
 
   .glow-border {
-    box-shadow: var(--glow);
+    border-color: #315343;
+    box-shadow: 0 0 12px rgba(58, 155, 120, 0.12);
   }
 
   .card-hover {
-    @apply transition-all duration-300;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #111A17;
+    border-color: #24332D;
   }
   .card-hover:hover {
     transform: translateY(-4px);
-    box-shadow: var(--card-glow);
+    background-color: #16211D;
+    border-color: #315343;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
   .animate-fade-up {
@@ -107,9 +123,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px hsl(166 100% 70% / 0.2); }
-  50% { box-shadow: 0 0 20px hsl(166 100% 70% / 0.4); }
 }
